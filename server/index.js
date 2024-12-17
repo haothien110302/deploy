@@ -13,7 +13,7 @@ const app = express();
 const corsOptions = {
     origin: '*',  // Allow the frontend app (React) to make requests
     methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],  // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'x-api-key'],  // Allow custom headers (including your API key)
+    allowedHeaders: ['Content-Type', 'x-auth-token'],  // Allow custom headers (including your API key)
     preflightContinue: false,  // End preflight requests after response
     optionsSuccessStatus: 200,  // Some legacy browsers (IE11, older Chrome) choke on 204
 };
