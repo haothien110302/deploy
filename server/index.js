@@ -9,12 +9,23 @@ connectDB();
 
 const app = express();
 
-// First, enable CORS using the defined options
-app.use(cors());
+// CORS options configuration
+const corsOptions = {
+    origin: '*',  // Allow the frontend app (React) to make requests
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],  // Allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'x-api-key'],  // Allow custom headers (including your API key)
+    preflightContinue: false,  // End preflight requests after response
+    optionsSuccessStatus: 200,  // Some legacy browsers (IE11, older Chrome) choke on 204
+};
+
+// Enable CORS with the configured options
+app.use(cors(corsOptions));
 
 // Middleware to parse JSON
 app.use(express.json());
 
+// Preflight (OPTIONS) requests handling
+app.options('*', cors(corsOptions));
 
 // Define routes
 route(app);
